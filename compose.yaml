@@ -1,0 +1,18 @@
+services:
+  sano:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      HOST: 0.0.0.0
+      PORT: 3000
+      DATA_DIR: /app/var
+      COOKIE_SECURE: ${COOKIE_SECURE:-0}
+      PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:-http://localhost:3000}
+    volumes:
+      - sano_data:/app/var
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+volumes:
+  sano_data:
